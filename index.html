@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pixel Drawing - aeatham</title>
+    <script type="text/javascript" src="gl-matrix-min.js"></script>
+    <script type="text/javascript" src="ndarray.bundle.js"></script>
+    <script type="text/javascript" src="heap.bundle.js"></script>
+    <script type="text/javascript" src="rasterize.js"></script>
+  </head>
+  <body onload="main();">
+    <div style="display: flex; align-items: flex-start;">
+      <div id="container" style="height: 512px; width: 512px; position: relative;"> 
+        <canvas id="myWebGLCanvas" width="512" height="512" style="position: absolute;"></canvas>
+        <img id="flameHand" src="https://akarsh16reddy.github.io/CG4Games-Program-2-Images/flame.png" style="position: absolute; height: 400px; width: auto; bottom: 0; right: 0; opacity: 0;"/>
+        <div id="hudDisplayDiv" style="position: absolute;"></div>
+      </div>
+
+      <div style="margin-left: 20px; font-family: sans-serif;">
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+          <span style="font-weight: bold; margin-right: 10px;">Normal Mapping:</span>
+          <label style="margin-right: 10px;">
+            <input type="radio" name="normalMapping" value="enabled" > Enabled
+          </label>
+          <label>
+            <input type="radio" name="normalMapping" value="disabled" checked> Disabled
+          </label>
+        </div>
+    
+        <!-- File Choosers -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center;">
+            <label for="textureInput" style="width: 130px;">Texture File:</label>
+            <input type="file" id="textureInput">
+          </div>
+          <div style="display: flex; align-items: center;">
+            <label for="normalMapInput" style="width: 130px;">Normal Map File:</label>
+            <input type="file" id="normalMapInput">
+          </div>
+        </div>
+
+        <!-- Normal Map Strength Slider -->
+        <div style="margin-top: 20px;">
+          <label for="normalMapStrength" style="font-weight: bold;">Normal Map Strength:</label><br>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="range" id="normalMapStrength" min="0.5" max="3" value="1" step="0.01" style="width: 200px;">
+            <span id="normalMapStrengthValue">1.00</span>
+          </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px dotted black; margin-top: 30px;" />
+
+        <div style="font-weight: bold; margin-top: 10px;"> Level of Detail:</div>
+        <!-- <div style="display: flex; align-items: center; margin-bottom: 10px; margin-top: 10px;">
+          <span style="margin-right: 10px;">Mesh Only:</span>
+          <label style="margin-right: 10px;">
+            <input type="radio" name="meshOnly" value="enabled" checked> Enabled
+          </label>
+          <label>
+            <input type="radio" name="meshOnly" value="disabled"> Disabled
+          </label>
+        </div> -->
+
+        <div style="display: flex; align-items: center; margin-top: 10px; gap: 20px;">
+          <span style="font-weight: bold;">Models:</span>
+          <label>
+            <input type="checkbox" id="cowCheckbox"> Cow
+          </label>
+          <label>
+            <input type="checkbox" id="suzanneCheckbox"> Suzanne
+          </label>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <label for="lodPercent" style="font-weight: bold;">Target Percentage of Triangles:</label><br>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="range" id="lodPercent" min="1" max="100" value="100" step="1" style="width: 200px;">
+            <span id="lodPercentValue">100</span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+</html>
